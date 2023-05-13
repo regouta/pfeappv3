@@ -105,15 +105,16 @@ class _HomeState extends State<HomePage1> {
       PageWithButton('About Us', '', _logout, ''),
     ];
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromRGBO(194, 91, 78, 1.0),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(0, 21, 4, 34),
+        backgroundColor: const Color.fromRGBO(194, 91, 78, 1.0),
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: Text('My Eyes'),
+        title: const Text('My Eyes'),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout, color: Color.fromARGB(255, 10, 9, 0)),
+            icon:
+                const Icon(Icons.logout, color: Color.fromARGB(255, 10, 9, 0)),
             onPressed: _logout,
           ),
         ],
@@ -172,9 +173,8 @@ class PageWithButton extends StatelessWidget {
               onPressed: buttonFunction,
               child: Text(buttonLabel),
             ),
-          if (buttonLabel.isEmpty) // Show the text if the label is empty
-            Container(
-              padding: const EdgeInsets.all(0),
+          if (buttonLabel.isEmpty)
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Stack(
@@ -182,7 +182,7 @@ class PageWithButton extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 1.6,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
                   ),
@@ -202,10 +202,51 @@ class PageWithButton extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 2.666,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(70),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'More information about US!',
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
+                              wordSpacing: 2,
+                              color: Color.fromRGBO(24, 24, 32, 1),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 40)),
+                          Text(
+                            "our mobile application by Se Engineering, designed to assist visually impaired individuals in navigating their surroundings with ease. My app offers a unique and innovative feature that not only helps users locate their current position but also allows them to revisit the last photos they saw. Using advanced GPS technology, the app provides audio cues to guide users to their desired destination. Additionally, users can take pictures of their surroundings and save them for future reference. This feature is particularly helpful for those who may want to revisit a specific location or landmark. My app also provides audio descriptions of the photos, making it easier for visually impaired users to recall and identify the objects captured in the image. As the creator of this app, I am proud to offer a tool that utilizes technology to improve the lives of visually impaired individuals and enhance their independence.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Color.fromRGBO(24, 24, 32, 1),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            )
-          else // Show the image if the URL is not empty
+            ),
+          if (imageUrl.isNotEmpty) // Show the image if the URL is not empty
             Image.file(
               File(imageUrl),
               height: 200,
@@ -244,7 +285,7 @@ class _PageWithTextState extends State<PageWithText> {
                       text: 'Welcome',
                       style: TextStyle(
                         fontSize: 32,
-                        color: Color.fromRGBO(194, 91, 78, 1.0),
+                        color: Color.fromRGBO(246, 246, 246, 1),
                         fontWeight: FontWeight.bold,
                       ),
                       children: <TextSpan>[
@@ -257,7 +298,7 @@ class _PageWithTextState extends State<PageWithText> {
             ),
             ImageContainer(
               height: MediaQuery.of(context).size.height * 0.45,
-              width: double.infinity,
+              width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(20.0),
               image: 'assets/images/image.png',
               child: Column(
@@ -286,91 +327,6 @@ class _PageWithTextState extends State<PageWithText> {
         ),
       ),
     );
-  }
-}
-
-class Qui extends StatelessWidget {
-  const Qui({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 50),
-          Text(
-            'Hello!',
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  height: 3,
-                ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'Our app provides support services for the visually impaired.\n It features real-time location tracking and can capture and transfer the last photo taken by smart glasses, benefiting those with partial vision.\n Our goal is to empower people with visual impairments for greater independence in daily activities.',
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  height: 2.25,
-                ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Intro extends StatelessWidget {
-  const Intro({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ImageContainer(
-        height: MediaQuery.of(context).size.height * 0.45,
-        width: double.infinity,
-        padding: const EdgeInsets.all(20.0),
-        image: 'assets/images/image.png',
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomTag(
-              backgroundColor:
-                  const Color.fromARGB(255, 197, 189, 231).withAlpha(150),
-              children: [
-                Text(
-                  'Welcome to My Eyes! ',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: const Color.fromARGB(255, 241, 240, 245),
-                      ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'We are excited to have you here. we hope you enjoy your experience with our app. Thanks for choosing My Eyes!',
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    height: 1.25,
-                  ),
-            ),
-            Text(
-              'By SE Engineering',
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: Colors.white,
-                  ),
-            ),
-          ],
-        ));
   }
 }
 
